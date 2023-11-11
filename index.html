@@ -1,21 +1,45 @@
 <html>
+  
   <style>
-    #webgl {
+    .webgl {
       position: fixed;
       top: 0;
       left: 0;
     }
-    #ui {
-      
-      position: absolute;
+    .ui {
+      position: relative;
+      width: 100%; height: 10%;
       color: white;
     }
+    
+    .console {
+      color: white;
+      position: absolute;
+      width: 98%;
+      border: 2px solid white;
+      bottom: 1%;
+      background-color: black;
+    }
   </style>
-  <canvas id="webgl"></canvas>
-  <div id="ui">
-    editor_simulation <br>
-    grid_helper: on <br>
-    axes_helper: on <br>
+  
+  <canvas class="webgl"></canvas>
+  
+  <div class="ui">
+    <div class="info-wrapper">
+      engine_simulator
+      <br><br>
+      grid_helper: on <br>
+      axes_helper: on <br>
+    </div>
+    <br>
+    <div class="buttons_wrapper">
+      <button id="run">run</button>
+      <button id="stop">stop</button>
+    </div>
+  </div>
+  <div class="console">
+    &nbsp;log >
   </div>
   <script type="module" src="./src/main.ts"></script>
+
 </html>
