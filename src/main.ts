@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons"
 import { FlyControls } from "three/examples/jsm/Addons";
+import { VRButton } from "three/examples/jsm/Addons";
 
 
 const raycaster = new THREE.Raycaster();
@@ -75,8 +76,10 @@ window.addEventListener("keypress", (key) => {
 			break;
 	}
 } )
-
-const update = () => {
+const ui = document.querySelector(".ui")!;
+ui?.appendChild(VRButton.createButton(renderer));
+renderer.xr.enabled = true;
+renderer.setAnimationLoop(() => {
 	let dt = clock.getDelta();
 
 	raycaster.setFromCamera(pointer, camera)
@@ -102,7 +105,7 @@ const update = () => {
 	} 
 
 	
-	requestAnimationFrame(update);
+	
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
@@ -110,8 +113,9 @@ const update = () => {
 	
 	renderer.render(scene, camera);
 	
-}
-update();
+});
+
+
 
 document.getElementById("run")?.addEventListener("click", () => {isRunning = true; debug.log("run mode: on")} )
 document.getElementById("stop")?.addEventListener("click", () => {isRunning = false; debug.log("run mode: off")} )
